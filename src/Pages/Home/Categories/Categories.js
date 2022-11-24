@@ -1,28 +1,15 @@
-import React from 'react';
-import image1 from '../../../assets/categories/apple.webp';
-import image2 from '../../../assets/categories/samsung-logo.webp';
-import image3 from '../../../assets/categories/OPPO_LOGO.jpg';
+import React, { useEffect, useState } from 'react';
 import CategoryCard from './CategoryCard';
 
 
 const Categories = () => {
-    const categories = [
-        {
-            id: 1,
-            image: image1,
-            name: 'apple'
-        },
-        {
-            id: 2,
-            image: image2,
-            name: 'samsung'
-        },
-        {
-            id: 3,
-            image: image3,
-            name: 'oppo'
-        },
-    ]
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/categories')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, [])
+
     return (
         <div className='my-20'>
             <h3 className='text-accent text-2xl text-center font-bold mb-5'>Smartphone Brands Categories</h3>
