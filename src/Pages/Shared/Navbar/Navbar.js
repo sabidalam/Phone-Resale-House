@@ -3,14 +3,22 @@ import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import logo from '../../../assets/logo.png';
+import PrimaryButton from '../../../Components/PrimaryButton/PrimaryButton';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleSingOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+
+    }
     const navbar = <>
         <Link to='/' className='btn btn-ghost'>Home</Link>
         <Link to='/' className='btn btn-ghost'>About</Link>
         <Link to='/' className='btn btn-ghost'>Products</Link>
         {
-            // user?.uid &&
+            user?.uid &&
             <>
                 <Link to='/dashboard' className='btn btn-ghost'>Dashboard</Link>
             </>
@@ -36,7 +44,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {/* {
+                {
                     user?.email ?
                         <>
                             <Link to=''>
@@ -52,7 +60,7 @@ const Navbar = () => {
                                         <FaUser className='mr-3'></FaUser>
                                 }
                             </Link>
-                            <button className='btn btn-primary btn-sm'><Link to='/login'>SignOut</Link></button>
+                            <button onClick={handleSingOut} className='btn btn-sm btn-primary bg-gradient-to-r from-primary to-secondary'><Link to='/login'>SignOut</Link></button>
                         </>
 
                         :
@@ -60,7 +68,7 @@ const Navbar = () => {
                             <Link to='/login' className='btn btn-ghost'>Login</Link>
                             <Link to='/signUp' className='btn btn-ghost'>SignUp</Link>
                         </>
-                } */}
+                }
             </div>
         </div>
     );
