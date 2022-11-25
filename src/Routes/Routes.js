@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import DisplayError from "../Pages/Shared/DisplayError/DisplayError";
 import SignUp from "../Pages/SignUp/SignUp";
+import img from '../assets/404error.jpg';
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,15 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
             },
         ]
+    },
+    {
+        path: '*',
+        element:
+            <div className="text-center">
+                <img src={img} alt="" className="w-1/2 mx-auto" />
+                <h3 className='text-3xl'>The route you are searching is not available!!!</h3>
+                <h3 className='text-3xl'>Please try for a valid route!!!</h3>
+            </div>
     }
 ])
 

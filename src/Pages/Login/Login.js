@@ -3,15 +3,17 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-
-
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = data => {
         console.log(data);
@@ -20,6 +22,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 console.error(err);
@@ -34,6 +37,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('SignIn Successful');
+                navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
     }
@@ -67,11 +71,11 @@ const Login = () => {
                     <div>
                         {loginError && <p className='text-error'>{loginError}</p>}
                     </div>
-                    <input type="submit" value='Login' className="btn btn-primary bg-gradient-to-r from-primary to-secondary w-full mb-5" />
+                    <input type="submit" value='Login' className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white w-full mb-5" />
                 </form >
                 <p className='text-center'>New to Phone Resale House? <Link to='/signUp' className='text-secondary'>Please SignUp</Link></p>
                 <div className='divider'>Or</div>
-                <button onClick={handleGoogleSignIn} className='btn btn-primary btn-outline w-full'><FcGoogle className='text-green-500 mr-2 text-xl' /> Continue with Google</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-primary btn-outline w-full'><FcGoogle className='mr-2 text-xl' /> Continue with Google</button>
             </div>
         </div>
     );

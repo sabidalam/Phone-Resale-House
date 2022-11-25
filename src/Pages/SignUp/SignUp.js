@@ -79,11 +79,11 @@ const SignUp = () => {
                     <div>
                         {signUpError && <p className='text-error'>{signUpError}</p>}
                     </div>
-                    <input type="submit" value='SignUP' className="btn btn-primary bg-gradient-to-r from-primary to-secondary w-full mb-5" />
+                    <input type="submit" value='Sign-UP' className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white w-full mb-5" />
                 </form >
                 <p className='text-center'>Already Have an Account? <Link to='/login' className='text-secondary'>Please Login</Link></p>
                 <div className='divider'>Or</div>
-                <button onClick={handleGoogleSignIn} className='btn btn-primary btn-outline w-full'><FcGoogle className='text-green-500 mr-2 text-xl' /> Continue with Google</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-primary btn-outline w-full'><FcGoogle className='mr-2 text-xl' /> Continue with Google</button>
             </div>
         </div>
     );
