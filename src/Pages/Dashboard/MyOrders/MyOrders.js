@@ -4,14 +4,21 @@ import Loader from '../../../Components/Loader/Loader';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const MyOrders = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
     const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url)
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+            if (res.status === 401 || res.status === 403) {
+                return logOut();
+            }
             const data = await res.json();
             return data;
         }

@@ -5,17 +5,22 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-import { useQuery } from '@tanstack/react-query';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
-    const [user, setUser] = useState({});
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = data => {
         console.log(data);
@@ -24,13 +29,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                fetch(`http://localhost:5000/users?email=${data.email}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        setUser(data);
-
-                    })
-                navigate(from, { replace: true })
+                setLoginUserEmail(data.email);
             })
             .catch(err => {
                 console.error(err);
@@ -45,7 +44,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('SignIn Successful');
-                navigate(from, { replace: true })
+                setLoginUserEmail(user.email);
             })
             .catch(err => console.error(err))
     }
