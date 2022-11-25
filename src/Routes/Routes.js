@@ -6,6 +6,9 @@ import Login from "../Pages/Login/Login";
 import DisplayError from "../Pages/Shared/DisplayError/DisplayError";
 import SignUp from "../Pages/SignUp/SignUp";
 import img from '../assets/404error.jpg';
+import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayout from "../Layout/DashboardLayout";
+import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 
 const router = createBrowserRouter([
     {
@@ -27,9 +30,20 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <Category></Category>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                element: <PrivateRoutes><Category></Category></PrivateRoutes>,
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
+        errorElement: <DisplayError></DisplayError>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyOrders></MyOrders>
+            }
         ]
     },
     {

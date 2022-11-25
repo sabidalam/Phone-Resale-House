@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
+import { useQuery } from '@tanstack/react-query';
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
+    const [user, setUser] = useState({});
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -22,6 +24,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                fetch(`http://localhost:5000/users?email=${data.email}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        setUser(data);
+
+                    })
                 navigate(from, { replace: true })
             })
             .catch(err => {
@@ -42,17 +50,10 @@ const Login = () => {
             .catch(err => console.error(err))
     }
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+        <div className='h-[700px] flex justify-center items-center'>
             <div className='w-96 p-7 border-2 rounded-lg'>
                 <h2 className='text-xl text-center font-bold'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
-                    <div className="form-control w-full">
-                        <label className="label"><span className="label-text">Account Type</span></label>
-                        <select {...register("accountType")} className="select select-bordered w-full max-w-xs" required>
-                            <option defaultValue='User'>User</option>
-                            <option>Seller</option>
-                        </select>
-                    </div>
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">Email</span></label>
                         <input type='email'

@@ -3,13 +3,14 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+    const navigate = useNavigate();
 
     const handleSignUp = data => {
         console.log(data);
@@ -21,10 +22,10 @@ const SignUp = () => {
                 toast('User Created Successfully');
                 const userInfo = {
                     displayName: data.name,
-                    accountType: data.accountType
                 }
                 updateUser(userInfo)
                     .then(() => {
+                        saveUser(data.name, data.email, data.accountType);
                     })
                     .catch(err => console.error(err));
             })
@@ -41,11 +42,29 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('SignIn Successful');
+                const accountType = 'User';
+                saveUser(user.displayName, user.email, accountType);
             })
             .catch(err => console.error(err))
     }
+
+    const saveUser = (name, email, accountType) => {
+        const user = { name, email, accountType };
+        fetch('http://localhost:5000/users', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                navigate('/');
+            })
+    }
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+        <div className='h-[700px] flex justify-center items-center'>
             <div className='w-96 p-7 border-2 rounded-lg'>
                 <h2 className='text-xl text-center font-bold'>Sign-Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
