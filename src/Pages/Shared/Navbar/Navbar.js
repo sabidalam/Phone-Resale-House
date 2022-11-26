@@ -15,7 +15,6 @@ const Navbar = () => {
     }
     const navbar = <>
         <Link to='/' className='btn btn-ghost'>Home</Link>
-        <Link to='/' className='btn btn-ghost'>About</Link>
         <Link to='/' className='btn btn-ghost'>Categories</Link>
         {
             user?.uid &&
@@ -23,6 +22,7 @@ const Navbar = () => {
                 <Link to='/dashboard' className='btn btn-ghost'>Dashboard</Link>
             </>
         }
+        <Link to='/blog' className='btn btn-ghost'>Blog</Link>
         <Link to='/' className='btn btn-ghost'>Contact Us</Link>
     </>
     return (
