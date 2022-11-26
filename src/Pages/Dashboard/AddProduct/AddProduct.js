@@ -2,10 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import Loader from '../../../Components/Loader/Loader';
 
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const imageHostKey = process.env.REACT_APP_imgbb_key;
 
@@ -62,6 +64,7 @@ const AddProduct = () => {
                             console.log(data);
                             if (data.acknowledged) {
                                 toast.success('Product Added Successfully');
+                                navigate('/dashboard/myProducts');
                             }
 
                         })

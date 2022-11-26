@@ -29,7 +29,10 @@ const DashboardLayout = () => {
                         }
                         {
                             isSeller &&
-                            <li className='font-bold bg-gray-200 rounded-lg'><Link to='/dashboard/addProduct'>Add A Product</Link></li>
+                            <>
+                                <li className='font-bold bg-gray-100 rounded-lg mb-3'><Link to='/dashboard/addProduct'>Add A Product</Link></li>
+                                <li className='font-bold bg-gray-100 rounded-lg'><Link to='/dashboard/myProducts'>My Products</Link></li>
+                            </>
                         }
                         {
                             isAdmin &&

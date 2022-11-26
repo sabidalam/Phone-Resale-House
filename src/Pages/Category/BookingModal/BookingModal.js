@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const BookingModal = ({ item, setItem, refetch }) => {
     const { user } = useContext(AuthContext);
-    const { name, id, resalePrice, brand } = item;
+    const { _id, name, id, resalePrice, brand } = item;
 
     const handleBooking = event => {
         event.preventDefault();
@@ -20,7 +20,8 @@ const BookingModal = ({ item, setItem, refetch }) => {
             userName: userName,
             email: email,
             productName: productName,
-            productID: id,
+            productID: _id,
+            id: id,
             brand,
             price: price,
             phone: phone,
