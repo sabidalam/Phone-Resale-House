@@ -25,17 +25,17 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {
                             isBuyer &&
-                            <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
+                            <li className='font-bold'><Link to='/dashboard/myOrders'>My Orders</Link></li>
                         }
                         {
                             isSeller &&
-                            <li><Link to='/dashboard/addProduct'>Add A Product</Link></li>
+                            <li className='font-bold bg-gray-200 rounded-lg'><Link to='/dashboard/addProduct'>Add A Product</Link></li>
                         }
                         {
                             isAdmin &&
                             <>
-                                <li><Link to='/dashboard/allBuyers'>All Buyers</Link></li>
-                                <li><Link to='/dashboard/allSellers'>All Sellers</Link></li>
+                                <li className='font-bold'><Link to='/dashboard/allBuyers'>All Buyers</Link></li>
+                                <li className='font-bold'><Link to='/dashboard/allSellers'>All Sellers</Link></li>
                             </>
                         }
 
@@ -43,7 +43,6 @@ const DashboardLayout = () => {
 
                 </div>
             </div>
-            <Footer></Footer>
         </div>
     );
 };

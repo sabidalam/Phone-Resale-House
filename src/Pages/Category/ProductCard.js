@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductCard = ({ product, setItem }) => {
-    const { img, brand, name, originalPrice, resalePrice, location, sellerName, usedTime, selling_post_date } = product;
+    const { img, brand, name, originalPrice, resalePrice, location, sellerName, usedTime, selling_post_date, productCondition, phone } = product;
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -12,9 +12,11 @@ const ProductCard = ({ product, setItem }) => {
                 <p>Brand: {brand}</p>
                 <p>Original-Price: ${originalPrice}</p>
                 <p>Resale-Price: ${resalePrice}</p>
-                <p>Used-Time: {usedTime}</p>
+                <p>Year-of-Use: {usedTime}</p>
+                <p>Product-Condition: {productCondition}</p>
                 <h2 className='font-bold divider'>Seller Information</h2>
                 <p>Seller-Name: {sellerName}</p>
+                <p>Phone: {phone}</p>
                 <p>Location: {location}</p>
                 <p>Posting-Date: {selling_post_date}</p>
                 <div className="text-center mt-3">
