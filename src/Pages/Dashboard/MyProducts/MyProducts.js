@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import Loader from '../../../Components/Loader/Loader';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
@@ -8,7 +9,7 @@ const MyProducts = () => {
 
     const url = `http://localhost:5000/products?email=${user?.email}`;
 
-    const { data: products = [], isLoading } = useQuery({
+    const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -22,7 +23,32 @@ const MyProducts = () => {
             const data = await res.json();
             return data;
         }
-    })
+    });
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure you want to delete this product?');
+        if (proceed) {
+            fetch(`http://localhost:5000/products/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        toast.success('Deleted Successfully');
+                        refetch();
+                    }
+                })
+        }
+    };
+
+    const handleAdvertise = id => {
+
+    }
+
     if (isLoading) {
         return <Loader></Loader>
     }
@@ -55,7 +81,7 @@ const MyProducts = () => {
                                         }
                                     </td>
                                     <td><button className='btn btn-sm btn-info'>Advertise</button></td>
-                                    <td><button className='btn btn-sm btn-error'>Delete</button></td>
+                                    <td><button onClick={() => handleDelete(product._id)} className='btn btn-sm btn-error'>Delete</button></td>
                                 </tr>)
                         }
                     </tbody>

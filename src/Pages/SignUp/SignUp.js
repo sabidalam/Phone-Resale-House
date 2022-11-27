@@ -11,16 +11,16 @@ const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
-    const navigate = useNavigate();
 
     const [createdUserEmail, setCreatedUserEmail] = useState('');
     const [token] = useToken(createdUserEmail);
+    const navigate = useNavigate();
+
     if (token) {
         navigate('/');
     }
 
     const handleSignUp = data => {
-        console.log(data);
         setSignUpError('');
         createUser(data.email, data.password)
             .then(result => {
