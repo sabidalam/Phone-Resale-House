@@ -47,6 +47,7 @@ const MyProducts = () => {
 
     const handleAdvertise = id => {
 
+
     }
 
     if (isLoading) {
@@ -80,7 +81,7 @@ const MyProducts = () => {
                                             <button className='btn btn-sm btn-success'>Available</button>
                                         }
                                     </td>
-                                    <td><button className='btn btn-sm btn-info'>Advertise</button></td>
+                                    <td><button onClick={() => handleAdvertise(product._id)} className='btn btn-sm btn-info'>Advertise</button></td>
                                     <td><button onClick={() => handleDelete(product._id)} className='btn btn-sm btn-error'>Delete</button></td>
                                 </tr>)
                         }

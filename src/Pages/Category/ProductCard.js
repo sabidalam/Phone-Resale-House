@@ -19,13 +19,23 @@ const ProductCard = ({ product, setItem }) => {
                 <p>Phone: {phone}</p>
                 <p>Location: {location}</p>
                 <p>Posting-Date: {selling_post_date}</p>
-                <div className="text-center mt-3">
-                    <label
-                        onClick={() => setItem(product)}
-                        htmlFor="booking-modal"
-                        className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white px-5">
-                        Book Now
-                    </label>
+                <div className='flex justify-between items-center'>
+                    <div className="mt-3">
+                        <label
+                            onClick={() => setItem(product)}
+                            htmlFor="booking-modal"
+                            className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">
+                            Book Now
+                        </label>
+                    </div>
+                    <div className="mt-3">
+                        <label
+                            onClick={() => setItem(product)}
+                            htmlFor="reportedModal"
+                            className="btn btn-info text-white">
+                            Report To Admin
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>

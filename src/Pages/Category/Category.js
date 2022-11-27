@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
 import BookingModal from './BookingModal/BookingModal';
 import ProductCard from './ProductCard';
+import ReportedModal from './ReportedModal/ReportedModal';
 
 const Category = () => {
     const [item, setItem] = useState(null);
     const products = useLoaderData();
+    const navigation = useNavigation();
 
-
+    if (navigation.state === 'loading') {
+        return <Loader></Loader>
+    };
     return (
         <div className='my-10'>
             <h3 className='text-accent text-2xl text-center font-bold mb-5'>All Available Products</h3>
@@ -27,6 +31,13 @@ const Category = () => {
                     item={item}
                     setItem={setItem}>
                 </BookingModal>
+            }
+            {
+                item &&
+                <ReportedModal
+                    item={item}
+                    setItem={setItem}>
+                </ReportedModal>
             }
         </div>
     );
