@@ -17,6 +17,8 @@ import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import SellerRoutes from "./SellerRoutes";
 import BuyerRoutes from "./BuyerRoutes";
 import Blog from "../Pages/Blog/Blog";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
         errorElement: <DisplayError></DisplayError>,
         children: [
             {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
                 path: '/dashboard/myOrders',
                 element: <BuyerRoutes><MyOrders></MyOrders></BuyerRoutes>
             },
@@ -71,6 +77,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myProducts',
                 element: <SellerRoutes><MyProducts></MyProducts></SellerRoutes>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`)
             },
         ]
     },

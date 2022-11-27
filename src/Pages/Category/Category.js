@@ -1,18 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
-import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import BookingModal from './BookingModal/BookingModal';
 import ProductCard from './ProductCard';
 
 const Category = () => {
-    const { loader } = useContext(AuthContext);
     const [item, setItem] = useState(null);
     const products = useLoaderData();
 
-    if (loader) {
-        return <Loader></Loader>
-    }
 
     return (
         <div className='my-10'>

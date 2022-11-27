@@ -26,10 +26,10 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast('User Created Successfully');
+                toast.success('User Created Successfully');
                 const userInfo = {
                     displayName: data.name
-                }
+                };
                 updateUser(userInfo)
                     .then(() => {
                         saveUser(data.name, data.email, data.accountType);
@@ -53,7 +53,7 @@ const SignUp = () => {
                 saveUser(user.displayName, user.email, accountType);
             })
             .catch(err => console.error(err))
-    }
+    };
 
     const saveUser = (name, email, accountType) => {
         const user = { name, email, accountType };
@@ -68,8 +68,8 @@ const SignUp = () => {
             .then(data => {
                 console.log(data);
                 setCreatedUserEmail(email);
-            })
-    }
+            });
+    };
     return (
         <div className='h-[700px] flex justify-center items-center'>
             <div className='w-96 p-7 border-2 rounded-lg'>

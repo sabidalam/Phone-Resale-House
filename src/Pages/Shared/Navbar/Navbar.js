@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import logo from '../../../assets/logo.png';
-import PrimaryButton from '../../../Components/PrimaryButton/PrimaryButton';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);

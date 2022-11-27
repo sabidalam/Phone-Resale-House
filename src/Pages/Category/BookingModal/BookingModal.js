@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const BookingModal = ({ item, setItem, refetch }) => {
     const { user } = useContext(AuthContext);
-    const { _id, name, id, resalePrice, brand } = item;
+    const { _id, name, id, resalePrice, brand, img } = item;
 
     const handleBooking = event => {
         event.preventDefault();
@@ -12,7 +12,7 @@ const BookingModal = ({ item, setItem, refetch }) => {
         const userName = form.userName.value;
         const email = form.email.value;
         const productName = form.productName.value;
-        const price = form.price.value;
+        const price = parseInt(form.price.value);
         const phone = form.phone.value;
         const location = form.location.value;
 
@@ -23,6 +23,7 @@ const BookingModal = ({ item, setItem, refetch }) => {
             productID: _id,
             id: id,
             brand,
+            img,
             price: price,
             phone: phone,
             location: location

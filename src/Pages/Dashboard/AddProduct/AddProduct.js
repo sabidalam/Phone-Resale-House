@@ -109,11 +109,11 @@ const AddProduct = () => {
                         </div>
                     </div>
                     <div className="form-control w-full">
-                        <input type='text'
+                        <input type='number'
                             {...register("originalPrice")} placeholder='Original Price' className="input input-bordered mb-3" required />
                     </div>
                     <div className="form-control w-full">
-                        <input type='text'
+                        <input type='number'
                             {...register("resalePrice")} placeholder='Resale Price' className="input input-bordered mb-3" required />
                     </div>
                     <div className="form-control w-full mb-3">
