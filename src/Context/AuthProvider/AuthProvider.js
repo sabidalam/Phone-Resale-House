@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
-import app from '../../Firebase/Firebase.config';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import app from '../../Firebase/Firebase.config';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -20,7 +20,6 @@ const AuthProvider = ({ children }) => {
     }
 
     const logOut = () => {
-        setLoader(true);
         localStorage.removeItem('accessToken');
         return signOut(auth);
     }

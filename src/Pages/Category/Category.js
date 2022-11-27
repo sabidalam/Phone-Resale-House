@@ -6,7 +6,7 @@ import ProductCard from './ProductCard';
 import ReportedModal from './ReportedModal/ReportedModal';
 
 const Category = () => {
-    const [item, setItem] = useState(null);
+    const [item, setItem] = useState({});
     const products = useLoaderData();
     const navigation = useNavigation();
 
@@ -32,13 +32,15 @@ const Category = () => {
                     setItem={setItem}>
                 </BookingModal>
             }
-            {
-                item &&
-                <ReportedModal
-                    item={item}
-                    setItem={setItem}>
-                </ReportedModal>
-            }
+            <div>
+                {
+                    item &&
+                    <ReportedModal
+                        item={item}
+                        setItem={setItem}>
+                    </ReportedModal>
+                }
+            </div>
         </div>
     );
 };

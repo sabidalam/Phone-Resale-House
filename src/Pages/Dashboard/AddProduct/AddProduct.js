@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../../Components/Loader/Loader';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import useVerified from '../../../Hooks/useVerified';
 
 const AddProduct = () => {
+    const { user } = useContext(AuthContext);
+    const [isVerified] = useVerified(user?.email);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
 
@@ -50,6 +54,7 @@ const AddProduct = () => {
                         description: data.description,
                         selling_post_date: data.date,
                         img: imageData.data.url,
+                        verified: isVerified
                     };
                     fetch('http://localhost:5000/products', {
                         method: 'POST',

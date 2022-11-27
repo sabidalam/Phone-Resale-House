@@ -1,7 +1,8 @@
 import React from 'react';
+import { MdVerifiedUser } from 'react-icons/md';
 
 const ProductCard = ({ product, setItem }) => {
-    const { img, brand, name, originalPrice, resalePrice, location, sellerName, usedTime, selling_post_date, productCondition, phone } = product;
+    const { img, brand, name, originalPrice, resalePrice, location, sellerName, usedTime, selling_post_date, productCondition, phone, } = product;
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -15,7 +16,15 @@ const ProductCard = ({ product, setItem }) => {
                 <p>Year-of-Use: {usedTime}</p>
                 <p>Product-Condition: {productCondition}</p>
                 <h2 className='font-bold divider'>Seller Information</h2>
-                <p>Seller-Name: {sellerName}</p>
+                <p className='flex items-center'>
+                    Seller-Name: {sellerName}
+                    <span>
+                        {
+                            product.verified &&
+                            <MdVerifiedUser className='text-blue-600 ml-1 mt-1'></MdVerifiedUser>
+                        }
+                    </span>
+                </p>
                 <p>Phone: {phone}</p>
                 <p>Location: {location}</p>
                 <p>Posting-Date: {selling_post_date}</p>
