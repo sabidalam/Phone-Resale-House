@@ -1,9 +1,9 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigation, } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import useToken from '../../Hooks/useToken';
 
@@ -14,13 +14,10 @@ const SignUp = () => {
 
     const [createdUserEmail, setCreatedUserEmail] = useState('');
     const [token] = useToken(createdUserEmail);
-    const navigation = useNavigation();
-    useEffect(() => {
-        navigation.navigate('/');
-    }, [navigation]);
+    const navigate = useNavigate();
 
     if (token) {
-        navigation.navigate('/');
+        navigate('/');
     }
 
     const handleSignUp = data => {
