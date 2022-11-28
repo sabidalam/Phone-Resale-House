@@ -158,15 +158,18 @@ const AddProduct = () => {
                             {...register("phone")} placeholder='Phone Number' className="input input-bordered mb-3" required />
                     </div>
                     <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Product Adding Date</span>
+                        </label>
                         <input type='date'
-                            {...register("date")} placeholder='Todays Date' className="input input-bordered mb-3" required />
+                            {...register("date")} className="input input-bordered mb-3" required />
                     </div>
                     <div className="form-control w-full">
                         <label className="label"><span className="label-text">Product Image</span></label>
                         <input type='file'
                             {...register("image")} className="input input-bordered mb-3 pt-2" required />
                     </div>
-                    <input type="submit" value='Add Product' className="btn btn-primary input-bordered w-full mb-5" />
+                    <input type="submit" value='Add Product' className="btn btn-primary input-bordered w-full mb-5 text-white" />
                 </form >
 
             </div>

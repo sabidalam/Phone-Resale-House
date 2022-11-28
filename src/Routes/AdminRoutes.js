@@ -9,11 +9,11 @@ const AdminRoutes = ({ children }) => {
     const { user, loader } = useContext(AuthContext);
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
-    if (loader || isAdminLoading) {
-        return <Loader></Loader>
-    }
     if (user && isAdmin) {
         return children;
+    }
+    if (loader || isAdminLoading) {
+        return <Loader></Loader>
     }
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };

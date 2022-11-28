@@ -59,7 +59,7 @@ const Navbar = () => {
                                         <FaUser className='mr-3'></FaUser>
                                 }
                             </Link>
-                            <button onClick={handleSingOut} className='btn btn-sm btn-primary bg-gradient-to-r from-primary to-secondary'><Link to='/login'>SignOut</Link></button>
+                            <button onClick={handleSingOut} className='btn btn-sm btn-primary bg-gradient-to-r from-primary to-secondary text-white'><Link to='/login'>SignOut</Link></button>
                         </>
 
                         :

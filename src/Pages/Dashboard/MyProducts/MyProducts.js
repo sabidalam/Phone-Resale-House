@@ -78,7 +78,7 @@ const MyProducts = () => {
                                     <td>${product.resalePrice}</td>
                                     <td>
                                         {
-                                            <button className='btn btn-sm btn-success'>Available</button>
+                                            <span className='text-primary font-bold'>Available</span>
                                         }
                                     </td>
                                     <td><button onClick={() => handleAdvertise(product._id)} className='btn btn-sm btn-info'>Advertise</button></td>

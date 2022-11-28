@@ -8,11 +8,11 @@ const SellerRoutes = ({ children }) => {
     const { user, loader } = useContext(AuthContext);
     const [isSeller, isSellerLoading] = useSeller(user?.email);
     const location = useLocation();
-    if (loader || isSellerLoading) {
-        return <Loader></Loader>
-    }
     if (user && isSeller) {
         return children;
+    }
+    if (loader || isSellerLoading) {
+        return <Loader></Loader>
     }
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };

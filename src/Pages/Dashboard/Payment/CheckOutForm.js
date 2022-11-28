@@ -84,7 +84,7 @@ const CheckOutForm = ({ booking }) => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    if (data.insertedId) {
+                    if (data.acknowledged) {
                         setSuccess('Congrats! Your Payment Completed');
                         setTransactionId(paymentIntent.id);
                     }
