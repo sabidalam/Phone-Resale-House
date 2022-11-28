@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import useToken from '../../Hooks/useToken';
 
@@ -11,7 +11,6 @@ const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
-
     const navigate = useNavigate();
     const location = useLocation();
 
