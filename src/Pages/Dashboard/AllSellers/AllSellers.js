@@ -9,7 +9,7 @@ const AllSellers = () => {
         queryKey: ['sellers'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/users/sellers', {
+                const res = await fetch('https://phone-resale-house-server.vercel.app/users/sellers', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -24,7 +24,7 @@ const AllSellers = () => {
     })
 
     const handleMakeVerified = id => {
-        fetch(`http://localhost:5000/users/seller/${id}`, {
+        fetch(`https://phone-resale-house-server.vercel.app/users/seller/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const AllSellers = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure you want to delete this seller?');
         if (proceed) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://phone-resale-house-server.vercel.app/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

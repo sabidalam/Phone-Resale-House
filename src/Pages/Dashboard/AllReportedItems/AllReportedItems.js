@@ -8,7 +8,7 @@ const AllReportedItems = () => {
         queryKey: ['reportedItems'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/reportedItems', {
+                const res = await fetch('https://phone-resale-house-server.vercel.app/reportedItems', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -25,7 +25,7 @@ const AllReportedItems = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure you want to delete this report?');
         if (proceed) {
-            fetch(`http://localhost:5000/reportedItems/${id}`, {
+            fetch(`https://phone-resale-house-server.vercel.app/reportedItems/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
