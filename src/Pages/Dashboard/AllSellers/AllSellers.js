@@ -3,6 +3,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import Loader from '../../../Components/Loader/Loader';
 import { MdVerifiedUser } from 'react-icons/md';
+import { FaUserTimes } from 'react-icons/fa';
 
 const AllSellers = () => {
     const { data: sellers = [], isLoading, refetch } = useQuery({
@@ -64,44 +65,44 @@ const AllSellers = () => {
         return <Loader></Loader>
     }
     return (
-        <div className='mb-6'>
-            <h3 className="text-xl font-bold mb-4">All Sellers</h3>
+        <div className='my-8 max-w-4xl mx-auto px-2'>
+            <h3 className="text-2xl text-violet-300 font-bold mb-4">All Sellers : {sellers.length}</h3>
             <div className="overflow-x-auto">
-                <table className="table table-normal w-11/12">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th>Verify</th>
-                            <th>Delete</th>
+                <table className="w-full bg-secondary rounded-lg overflow-hidden">
+                    <thead className='text-violet-200'>
+                        <tr className='bg-primary'>
+                            <th className='py-5'></th>
+                            <th className='py-5'>Name</th>
+                            <th className='py-5'>Email</th>
+                            <th className='py-5'>Status</th>
+                            <th className='py-5'>Verify</th>
+                            <th className='py-5 pr-2'>Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='text-center text-white'>
                         {
                             sellers?.map((seller, i) =>
-                                <tr key={seller._id}>
-                                    <th>{i + 1}</th>
-                                    <td>{seller.name}</td>
-                                    <td>{seller.email}</td>
-                                    <td>
+                                <tr key={seller._id} className='hover:bg-info rounded-xl cursor-pointer duration-300' style={{ 'border-top': '1px solid #231942' }}>
+                                    <th className='p-5'>{i + 1}</th>
+                                    <td className='py-4'>{seller.name}</td>
+                                    <td className='px-2'>{seller.email}</td>
+                                    <td className='px-2'>
                                         {
                                             seller?.status ?
                                                 <p className='flex items-center'>
-                                                    {seller.status} <MdVerifiedUser className='text-blue-600 ml-1 mt-1'></MdVerifiedUser>
+                                                    {seller.status} <MdVerifiedUser className='text-blue-600 ml-1'></MdVerifiedUser>
                                                 </p>
                                                 :
-                                                'unverified'
+                                                'Not verified'
                                         }
                                     </td>
-                                    <td>
+                                    <td className='px-2'>
                                         {
                                             seller.status !== 'verified' &&
                                             <button onClick={() => handleMakeVerified(seller._id)} className='btn btn-sm btn-primary'>Make Verified</button>
                                         }
                                     </td>
-                                    <td><button onClick={() => handleDelete(seller._id)} className='btn btn-sm btn-error'>Delete</button></td>
+                                    <td className='px-2'><button onClick={() => handleDelete(seller._id)} className='border-0'><FaUserTimes className='text-red-500' size={25} /></button></td>
                                 </tr>)
                         }
                     </tbody>

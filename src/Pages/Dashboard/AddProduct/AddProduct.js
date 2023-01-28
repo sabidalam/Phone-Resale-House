@@ -78,7 +78,7 @@ const AddProduct = () => {
     }
     return (
         <div className='my-10'>
-            <h3 className="text-xl font-bold mb-4 text-center">Add A Product</h3>
+            <h3 className="text-2xl text-violet-300 font-bold mb-4 text-center">Add A Product</h3>
             <div className='w-96 mx-auto p-7 border-2 rounded-lg'>
                 <form onSubmit={handleSubmit(handleAddProduct)}>
                     <div className="form-control w-full">
@@ -87,8 +87,10 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control w-full mb-3">
                         <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text text-gray-400">Select Product Brand</span>
+                            </label>
                             <select className="select select-bordered" {...register("category")} required>
-                                <option disabled selected>Select Product Brand Category</option>
                                 {
                                     categories.map(category =>
                                         <option key={category._id}
@@ -101,8 +103,10 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control w-full mb-3">
                         <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text text-gray-400">Select your Brand wise Product-ID*</span>
+                            </label>
                             <select className="select select-bordered" {...register("id")} required>
-                                <option disabled selected>Select your Category wise Product-ID</option>
                                 {
                                     categories.map(category =>
                                         <option key={category._id}
@@ -159,17 +163,17 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Product Adding Date</span>
+                            <span className="label-text text-gray-400">Product Adding Date</span>
                         </label>
                         <input type='date'
                             {...register("date")} className="input input-bordered mb-3" required />
                     </div>
                     <div className="form-control w-full">
-                        <label className="label"><span className="label-text">Product Image</span></label>
+                        <label className="label"><span className="label-text text-gray-400">Product Image</span></label>
                         <input type='file'
-                            {...register("image")} className="input input-bordered mb-3 pt-2" required />
+                            {...register("image")} className="input input-bordered mb-6 pt-2" required />
                     </div>
-                    <input type="submit" value='Add Product' className="btn btn-primary input-bordered w-full mb-5 text-white" />
+                    <input type="submit" value='Add Product' className="btn btn-primary normal-case bg-gradient-to-r from-secondary to-primary w-full mb-5 text-white" />
                 </form >
 
             </div>

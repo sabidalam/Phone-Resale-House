@@ -5,7 +5,7 @@ import router from './Routes/Routes';
 
 function App() {
   return (
-    <div>
+    <div className='bg-gradient-to-r from-primary via-secondary to-accent'>
       <RouterProvider router={router}></RouterProvider>
       <Toaster />
     </div>

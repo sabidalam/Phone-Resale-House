@@ -3,8 +3,8 @@ import React from 'react';
 const Blog = () => {
     return (
         <div className='container mx-auto px-6 md:px-40'>
-            <h1 className='text-3xl font-bold bg-gray-300 text-accent text-center rounded md:w-1/6 py-3 mx-auto my-8'>Blog</h1>
-            <div className='bg-gray-300 text-left pl-12 p-12 rounded mb-8'>
+            <h1 className='text-3xl font-bold text-violet-300 text-center py-3 mx-auto my-32'>Coming Soon...</h1>
+            {/* <div className='bg-gray-300 text-left pl-12 p-12 rounded mb-8'>
                 <h3 className='text-2xl font-bold mb-4'>What are the different ways to manage a state in a React application?</h3>
                 <p>
                     <b>In React apps, there are at least five ways to handle a state.</b> <br />
@@ -49,7 +49,7 @@ const Blog = () => {
                     <b>Vue:</b>
                     Vue.js is,“A progressive JavaScript framework”Vue.js is developed and led by Evan You, but also it counts on a huge open-source community.
                 </p>
-            </div>
+            </div> */}
         </div>
     );
 };

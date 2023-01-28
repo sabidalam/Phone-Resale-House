@@ -1,11 +1,14 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate, } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import useToken from '../../Hooks/useToken';
+import image from '../../assets/login/Mobile login-pana (1).png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -71,46 +74,58 @@ const SignUp = () => {
                 setCreatedUserEmail(email);
             });
     };
+
+    useEffect(() => {
+        AOS.init({ duration: 2000 });
+    }, []);
+
     return (
-        <div className='h-[700px] flex justify-center items-center'>
-            <div className='w-96 p-7 border-2 rounded-lg'>
-                <h2 className='text-xl text-center font-bold'>Sign-Up</h2>
-                <form onSubmit={handleSubmit(handleSignUp)}>
-                    <div className="form-control w-full">
-                        <label className="label"><span className="label-text">Name</span></label>
-                        <input type='text'
-                            {...register("name")} className="input input-bordered mb-3" required />
+        <div>
+            <div className="hero my-8 max-w-5xl mx-auto">
+                <div className="hero-content flex-col lg:flex-row">
+                    <div className="text-center w-1/2 mx-auto lg:mr-24 lg:mb-28" data-aos='fade-right'>
+                        <img src={image} alt="" />
                     </div>
-                    <div className="form-control w-full">
-                        <label className="label"><span className="label-text">Account Type</span></label>
-                        <select {...register("accountType")} className="select select-bordered w-full max-w-xs" required>
-                            <option defaultValue='User'>User</option>
-                            <option>Seller</option>
-                        </select>
+                    <div className="card flex-shrink-0 w-full max-w-sm border-2 p-8 rounded-xl border-white" data-aos='fade-left'>
+                        <h2 className='text-2xl text-violet-200 text-center font-bold'>Sign-Up</h2>
+                        <form onSubmit={handleSubmit(handleSignUp)}>
+                            <div className="form-control w-full">
+                                <label className="label"><span className="label-text text-gray-300">Name</span></label>
+                                <input type='text'
+                                    {...register("name")} className="input input-bordered mb-3" required />
+                            </div>
+                            <div className="form-control w-full">
+                                <label className="label"><span className="label-text text-gray-300">Account Type</span></label>
+                                <select {...register("accountType")} className="select select-bordered w-full max-w-xs" required>
+                                    <option defaultValue='User'>User</option>
+                                    <option>Seller</option>
+                                </select>
+                            </div>
+                            <div className="form-control w-full">
+                                <label className="label"><span className="label-text text-gray-300">Email</span></label>
+                                <input type='email'
+                                    {...register("email", { required: "Email Address is required" })}
+                                    className="input input-bordered mb-3" />
+                                {errors.email && <p className='text-error'>{errors.email?.message}</p>}
+                            </div>
+                            <div className="form-control w-full mb-3">
+                                <label className="label"><span className="label-text text-gray-300">Password</span></label>
+                                <input type='password'
+                                    {...register("password",
+                                        { required: "Password is required", minLength: { value: 6, message: 'Password must be atleast 6 characters or longer' } })}
+                                    className="input input-bordered" />
+                                {errors.password && <p className='text-error'>{errors.password?.message}</p>}
+                            </div>
+                            <div>
+                                {signUpError && <p className='text-error'>{signUpError}</p>}
+                            </div>
+                            <input type="submit" value='Sign-UP' className="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white w-full mb-5" />
+                        </form >
+                        <p className='text-center text-sm text-gray-700'>Already Have an Account? <Link to='/login' className='text-violet-100'> Please Login</Link></p>
+                        <div className='divider text-white'>Or</div>
+                        <button onClick={handleGoogleSignIn} className='btn btn-neutral btn-outline w-full'><FcGoogle className='mr-2 text-xl' /> Continue with Google</button>
                     </div>
-                    <div className="form-control w-full">
-                        <label className="label"><span className="label-text">Email</span></label>
-                        <input type='email'
-                            {...register("email", { required: "Email Address is required" })}
-                            className="input input-bordered mb-3" />
-                        {errors.email && <p className='text-error'>{errors.email?.message}</p>}
-                    </div>
-                    <div className="form-control w-full mb-3">
-                        <label className="label"><span className="label-text">Password</span></label>
-                        <input type='password'
-                            {...register("password",
-                                { required: "Password is required", minLength: { value: 6, message: 'Password must be atleast 6 characters or longer' } })}
-                            className="input input-bordered" />
-                        {errors.password && <p className='text-error'>{errors.password?.message}</p>}
-                    </div>
-                    <div>
-                        {signUpError && <p className='text-error'>{signUpError}</p>}
-                    </div>
-                    <input type="submit" value='Sign-UP' className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white w-full mb-5" />
-                </form >
-                <p className='text-center'>Already Have an Account? <Link to='/login' className='text-secondary'>Please Login</Link></p>
-                <div className='divider'>Or</div>
-                <button onClick={handleGoogleSignIn} className='btn btn-primary btn-outline w-full'><FcGoogle className='mr-2 text-xl' /> Continue with Google</button>
+                </div>
             </div>
         </div>
     );

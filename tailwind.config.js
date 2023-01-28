@@ -6,11 +6,13 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        doctorTheme: {
-          primary: "#EC407A",
-          secondary: "#F1948A",
-          accent: "#3A4256",
-          neutral: "#3d4451",
+        Theme: {
+          primary: "#231942",
+          secondary: "#5E548E",
+          accent: "#9F86C0",
+          info: "#BE95C4",
+          neutral: "#E0B1CB",
+
           "base-100": "#ffffff",
         },
       },

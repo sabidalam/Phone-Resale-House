@@ -22,24 +22,24 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+                    <ul className="menu p-4 w-80 bg-primary text-base-content">
                         {
                             isBuyer &&
-                            <li className='font-bold bg-gray-100 rounded-lg'><Link to='/dashboard/myOrders'>My Orders</Link></li>
+                            <li className='font-bold bg-secondary text-white rounded-lg'><Link to='/dashboard/myOrders'>My Orders</Link></li>
                         }
                         {
                             isSeller &&
                             <>
-                                <li className='font-bold bg-gray-100 rounded-lg mb-3'><Link to='/dashboard/addProduct'>Add A Product</Link></li>
-                                <li className='font-bold bg-gray-100 rounded-lg'><Link to='/dashboard/myProducts'>My Products</Link></li>
+                                <li className='font-bold bg-secondary text-white rounded-lg mb-3'><Link to='/dashboard/addProduct'>Add A Product</Link></li>
+                                <li className='font-bold bg-secondary text-white rounded-lg'><Link to='/dashboard/myProducts'>My Products</Link></li>
                             </>
                         }
                         {
                             isAdmin &&
                             <>
-                                <li className='font-bold bg-gray-100 rounded-lg mb-3'><Link to='/dashboard/allBuyers'>All Buyers</Link></li>
-                                <li className='font-bold bg-gray-100 rounded-lg mb-3'><Link to='/dashboard/allSellers'>All Sellers</Link></li>
-                                <li className='font-bold bg-gray-100 rounded-lg'><Link to='/dashboard/reportedItems'>Reported Items</Link></li>
+                                <li className='font-bold bg-secondary text-white rounded-lg mb-3'><Link to='/dashboard/allBuyers'>All Buyers</Link></li>
+                                <li className='font-bold bg-secondary text-white rounded-lg mb-3'><Link to='/dashboard/allSellers'>All Sellers</Link></li>
+                                <li className='font-bold bg-secondary text-white rounded-lg'><Link to='/dashboard/reportedItems'>Reported Items</Link></li>
                             </>
                         }
 

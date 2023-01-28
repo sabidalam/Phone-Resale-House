@@ -28,41 +28,41 @@ const MyOrders = () => {
         return <Loader></Loader>
     }
     return (
-        <div className='my-3'>
-            <h3 className="text-xl font-bold mb-4">My Orders</h3>
+        <div className='my-8 max-w-4xl mx-auto px-2'>
+            <h3 className="text-2xl text-violet-300 font-bold mb-4">My Orders</h3>
             <div className="overflow-x-auto">
-                <table className="table w-11/12">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>image</th>
-                            <th>Product-Name</th>
-                            <th>Brand</th>
-                            <th>Price</th>
-                            <th>Payment</th>
+                <table className=" lg:w-11/12 bg-secondary rounded-lg overflow-hidden">
+                    <thead className='text-violet-200'>
+                        <tr className='bg-primary'>
+                            <th className='py-5'></th>
+                            <th className='py-5'>image</th>
+                            <th className='py-5 px-2'>Product-Name</th>
+                            <th className='py-5'>Brand</th>
+                            <th className='py-5'>Price</th>
+                            <th className='py-5 pr-2'>Payment</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='text-center text-white'>
                         {
                             bookings &&
                             bookings.map((booking, i) =>
-                                <tr key={booking._id}>
-                                    <th>{i + 1}</th>
-                                    <td>
+                                <tr key={booking._id} className='hover:bg-info hover:scale-105 rounded-xl cursor-pointer duration-300' style={{ 'border-top': '1px solid #231942' }}>
+                                    <th className='px-4'>{i + 1}</th>
+                                    <td className='py-3'>
                                         <div className="avatar">
                                             <div className="w-12">
                                                 <img src={booking.img} alt='' className='rounded-xl' />
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{booking.productName}</td>
-                                    <td>{booking.brand}</td>
-                                    <td>${booking.price}</td>
+                                    <td className='px-2'>{booking.productName}</td>
+                                    <td className='px-2'>{booking.brand}</td>
+                                    <td className='px-2'>${booking.price}</td>
                                     <td>
                                         {
                                             booking.price && !booking.paid &&
                                             <Link to={`/dashboard/payment/${booking._id}`}>
-                                                <button className='btn btn-primary btn-sm'>Pay</button>
+                                                <button className='btn btn-primary text-white btn-sm'>Pay</button>
                                             </Link>
                                         }
                                         {

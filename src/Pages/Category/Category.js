@@ -15,7 +15,7 @@ const Category = () => {
     };
     return (
         <div className='my-10'>
-            <h3 className='text-accent text-2xl text-center font-bold mb-5'>All Available Products</h3>
+            <h3 className='text-violet-300 text-3xl text-center font-bold mb-10'>All Products</h3>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-5/6 mx-auto'>
                 {
                     products.map(product => <ProductCard

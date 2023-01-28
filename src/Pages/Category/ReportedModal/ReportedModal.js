@@ -47,9 +47,9 @@ const ReportedModal = ({ item, setItem }) => {
         <>
             <input type="checkbox" id="reportedModal" className="modal-toggle" />
             <div className="modal">
-                <div className="modal-box relative">
+                <div className="modal-box relative bg-secondary">
                     <label htmlFor="reportedModal" className="btn btn-sm btn-circle absolute right-4 top-6">✕</label>
-                    <h3 className="text-lg font-bold mb-5">You are reporting for {name}</h3>
+                    <h3 className="text-lg text-violet-300 font-bold mb-5">You are reporting for {name}</h3>
                     <form onSubmit={handleReport}>
                         <input type="text" name='userName' defaultValue={user?.displayName} placeholder="User Name" disabled className="input input-bordered w-full mb-3" />
                         <input type="text" name='email' defaultValue={user?.email} placeholder="User Email" disabled className="input input-bordered w-full mb-3" />

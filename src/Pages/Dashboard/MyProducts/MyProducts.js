@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import Loader from '../../../Components/Loader/Loader';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import { MdDeleteForever } from 'react-icons/md';
+import PrimaryButton from '../../../Components/PrimaryButton/PrimaryButton';
 
 const MyProducts = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -24,6 +26,7 @@ const MyProducts = () => {
             return data;
         }
     });
+    console.log(products);
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure you want to delete this product?');
@@ -66,35 +69,43 @@ const MyProducts = () => {
         return <Loader></Loader>
     }
     return (
-        <div>
-            <h3 className="text-xl font-bold mb-4">My Products</h3>
+        <div className='my-8 max-w-4xl mx-auto px-2'>
+            <h3 className="text-2xl text-violet-300 font-bold mb-4">My Products: {products.length}</h3>
             <div className="overflow-x-auto">
-                <table className="table w-11/12">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Product-Name</th>
-                            <th>Price</th>
-                            <th>Sales-status</th>
-                            <th>Advertise</th>
-                            <th>Delete</th>
+                <table className="w-full bg-secondary rounded-lg overflow-hidden">
+                    <thead className='text-violet-200'>
+                        <tr className='bg-primary'>
+                            <th className='py-5'></th>
+                            <th className='py-5'>Product-Name</th>
+                            <th className='py-5'>Price</th>
+                            <th className='py-5'>Sales-status</th>
+                            <th className='py-5'>Advertise</th>
+                            <th className='py-5 pr-2'>Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='text-center text-white'>
                         {
                             products &&
                             products.map((product, i) =>
-                                <tr key={product._id}>
-                                    <th>{i + 1}</th>
-                                    <td>{product.name}</td>
-                                    <td>${product.resalePrice}</td>
-                                    <td>
+                                <tr key={product._id} className='hover:bg-info hover:scale-105 rounded-xl duration-300' style={{ 'border-top': '1px solid #231942' }}>
+                                    <th className='pl-4 py-5'>{i + 1}</th>
+                                    <td className='pl-2'>{product.name}</td>
+                                    <td className='px-2'>${product.resalePrice}</td>
+                                    <td className='px-2'>
                                         {
-                                            <span className='text-primary font-bold'>Available</span>
+                                            product?.booked ?
+                                                <span className='text-white font-bold'>Sold</span>
+                                                :
+                                                <span className='text-white font-bold'>Available</span>
                                         }
                                     </td>
-                                    <td><button onClick={() => handleAdvertise(product._id)} className='btn btn-sm btn-info'>Advertise</button></td>
-                                    <td><button onClick={() => handleDelete(product._id)} className='btn btn-sm btn-error'>Delete</button></td>
+                                    {
+                                        product?.advertise ?
+                                            <td className='px-2 text-primary font-bold'>Advertised</td>
+                                            :
+                                            <td className='px-2'><button onClick={() => handleAdvertise(product._id)} disabled><PrimaryButton classes={'btn-sm normal-case'}>Advertise</PrimaryButton></button></td>
+                                    }
+                                    <td className='px-2'><button onClick={() => handleDelete(product._id)} className='border-0'><MdDeleteForever className='text-red-500' size={30} /></button></td>
                                 </tr>)
                         }
                     </tbody>

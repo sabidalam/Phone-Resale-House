@@ -29,7 +29,7 @@ const BookingModal = ({ item, setItem }) => {
             location: location
         }
         fetch('https://phone-resale-house-server.vercel.app/bookings', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -39,8 +39,8 @@ const BookingModal = ({ item, setItem }) => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    setItem(null);
                     toast.success('Booking Confirmed');
+                    setItem(null);
                 }
                 else {
                     toast.error(data.message);
@@ -52,9 +52,9 @@ const BookingModal = ({ item, setItem }) => {
         <>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">
-                <div className="modal-box relative">
+                <div className="modal-box relative bg-secondary">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-4 top-6">✕</label>
-                    <h3 className="text-primary text-lg font-bold mb-5">Book {name}!</h3>
+                    <h3 className="text-violet-300 text-lg font-bold mb-5">Book {name} !</h3>
                     <form onSubmit={handleBooking}>
                         <input type="text" name='userName' defaultValue={user?.displayName} placeholder="User Name" disabled className="input input-bordered w-full mb-3" />
                         <input type="text" name='email' defaultValue={user?.email} placeholder="User Email" disabled className="input input-bordered w-full mb-3" />

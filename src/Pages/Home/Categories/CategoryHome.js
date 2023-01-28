@@ -1,35 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Loader from '../../../Components/Loader/Loader';
+import { Link } from 'react-router-dom';
+import PrimaryButton from '../../../Components/PrimaryButton/PrimaryButton';
 import CategoryCard from './CategoryCard';
 
-
-const Categories = () => {
+const CategoryHome = () => {
     const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(false);
-
     useEffect(() => {
-        setLoading(true);
-        fetch('https://phone-resale-house-server.vercel.app/allCategories')
+        fetch('https://phone-resale-house-server.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
-            .catch((err) => {
-                console.log(err);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, []);
-
-
-
-    if (loading) {
-        return <Loader></Loader>
-    };
-
-
+    }, [])
     return (
-        <div className='mt-10 mb-16'>
-            <h3 className='text-violet-300 text-3xl text-center font-bold mb-10'>All Smartphone Brands</h3>
+        <div className='my-20'>
+            <h3 className='text-violet-300 text-3xl text-center font-bold mb-10'>Smartphone Brands Categories</h3>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-sm lg:max-w-4xl mx-auto'>
                 {
                     categories.map(category => <CategoryCard
@@ -38,8 +21,11 @@ const Categories = () => {
                     </CategoryCard>)
                 }
             </div>
+            <div className='my-8 text-center'>
+                <Link to='/categories'><PrimaryButton classes={'px-10'}>View All Brands</PrimaryButton></Link>
+            </div>
         </div>
     );
 };
 
-export default Categories;
+export default CategoryHome;

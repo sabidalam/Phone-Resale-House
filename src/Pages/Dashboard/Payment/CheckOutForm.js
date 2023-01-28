@@ -100,7 +100,7 @@ const CheckOutForm = ({ booking }) => {
                         style: {
                             base: {
                                 fontSize: '16px',
-                                color: '#424770',
+                                color: 'white',
                                 '::placeholder': {
                                     color: '#aab7c4',
                                 },
@@ -119,8 +119,8 @@ const CheckOutForm = ({ booking }) => {
             <p className="text-error mt-3">{cardError}</p>
             {
                 success && <div>
-                    <p className='text-xl text-primary'>{success}</p>
-                    <p>Your TransactionId: <span className='font-bold'>{transactionId}</span></p>
+                    <p className='text-xl text-green-500'>{success}</p>
+                    <p className='text-white'>Your TransactionId: <span className='font-bold'>{transactionId}</span></p>
 
                 </div>
             }

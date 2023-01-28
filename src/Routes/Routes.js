@@ -20,6 +20,8 @@ import Blog from "../Pages/Blog/Blog";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AllReportedItems from "../Pages/Dashboard/AllReportedItems/AllReportedItems";
+import Contact from "../Pages/Home/Contact/Contact";
+import Categories from "../Pages/Home/Categories/Categories";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
+                path: '/categories',
+                element: <Categories></Categories>
+            },
+            {
                 path: '/signUp',
                 element: <SignUp></SignUp>
             },
@@ -42,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
             },
             {
                 path: '/category/:id',
